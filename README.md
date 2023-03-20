@@ -1,6 +1,6 @@
-### NodeJS Boilerplate
+### RPS
 
-NodeJS Boilerplate starting codebase, with jest, linter and prettier
+The new Rock Paper Scissor project
 
 ### Recommended setup
 - Enable "Format on save" in your IDE
