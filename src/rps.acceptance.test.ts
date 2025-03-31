@@ -46,7 +46,7 @@ class RPS implements QualcosaInbound {
             playerPoints += result === "Player point" ? 1 : 0
         }
 
-        return playerPoints >= 2 ? "player wins!" : "boh"
+        return playerPoints >= 2 ? "player wins!" : "computer wins!"
     }
 
 }
@@ -80,4 +80,20 @@ test('single game, vs computer, player wins', () => {
     const results = app.playGamble(["P", "P", "P"])
     // show results
     expect(results).toEqual("player wins!")
+});
+
+test('single game, vs computer, computer wins', () => {
+    // prepare challenge
+    const currentChallenge = {
+        player: "me",
+        opponent: "computer",
+        opponentGamble: ["R", "R", "R"]
+    }
+    const challengeCatalog = new InMemoryChallengeCatalog([currentChallenge])
+
+    const app = new RPS(challengeCatalog)
+    // submit gamble
+    const results = app.playGamble(["S", "S", "S"])
+    // show results
+    expect(results).toEqual("computer wins!")
 });
