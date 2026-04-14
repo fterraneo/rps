@@ -16,8 +16,8 @@ The player then submits a gamble.
 
 2. answer to an opponent challenge:
 
-choosing the challenge from a list, the stats of the opponent are shown (see above)
-then the game ends telling the name of the winning player and the gambles
+choosing the challenge from a list, the stats of the opponent are shown (see above), then the player submits a gamble, and
+then the game ends telling the name of the winning player and the gamble that won.
 
 Example:
 - player "Gecko" challenge "Gonzo"
@@ -33,7 +33,7 @@ Most played: Rock
 - player "Gecko" submits: Scissors, Scissors, Paper
 - player "Gonzo" logs in and answer challenge from "Gecko", submitting Scissors, Paper, Rock
 - game ends with:
--
+
 ```
 Gecko WINS with Scissors, Scissors, Paper! 
 ```
