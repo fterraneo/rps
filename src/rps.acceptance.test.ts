@@ -60,7 +60,6 @@ interface QualcosaInbound {
     playGamble(gamble: string[]): string
 }
 
-
 interface ChallengeCatalog {
     getCurrentChallenge(): Challenge
 }
