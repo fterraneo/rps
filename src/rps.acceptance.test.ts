@@ -1,10 +1,10 @@
 import {test, expect} from "@jest/globals"
 
-const resolveThrow = (opponentThrow: string, playerThrow: string) => {
-    const ROCK = "R";
-    const PAPER = "P";
-    const SCISSORS = "S";
+const ROCK = "R"
+const PAPER = "P"
+const SCISSORS = "S"
 
+const resolveThrow = (opponentThrow: string, playerThrow: string) => {
     if (
         opponentThrow === ROCK && playerThrow === PAPER ||
         opponentThrow === PAPER && playerThrow === SCISSORS ||
@@ -71,13 +71,13 @@ test('single game, vs computer, player wins', () => {
     const currentChallenge = {
         player: "me",
         opponent: "computer",
-        opponentGamble: ["R", "R", "R"]
+        opponentGamble: [ROCK, ROCK, ROCK]
     }
     const challengeCatalog = new InMemoryChallengeCatalog([currentChallenge])
 
     const app = new RPS(challengeCatalog)
     // submit gamble
-    const results = app.playGamble(["P", "P", "P"])
+    const results = app.playGamble([PAPER, PAPER, PAPER])
     // show results
     expect(results).toEqual("player wins!")
 });
@@ -87,13 +87,13 @@ test('single game, vs computer, computer wins', () => {
     const currentChallenge = {
         player: "me",
         opponent: "computer",
-        opponentGamble: ["R", "R", "R"]
+        opponentGamble: [ROCK, ROCK, ROCK]
     }
     const challengeCatalog = new InMemoryChallengeCatalog([currentChallenge])
 
     const app = new RPS(challengeCatalog)
     // submit gamble
-    const results = app.playGamble(["S", "S", "S"])
+    const results = app.playGamble([SCISSORS, SCISSORS, SCISSORS])
     // show results
     expect(results).toEqual("computer wins!")
 });
