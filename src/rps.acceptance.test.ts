@@ -1,25 +1,31 @@
-import { test, expect } from "@jest/globals"
+import { expect, test } from "@jest/globals"
 
 const ROCK = "R"
 const PAPER = "P"
 const SCISSORS = "S"
 
+enum ThrowResult {
+    DRAW = "Draw",
+    PLAYER_POINT = "Player point",
+    OPPONENT_POINT = "Opponent point",
+}
+
 const resolveThrow = (opponentThrow: string, playerThrow: string) => {
     switch (opponentThrow) {
         case ROCK:
-            if (playerThrow === PAPER) return "Player point"
-            if (playerThrow === ROCK) return "Draw"
+            if (playerThrow === PAPER) return ThrowResult.PLAYER_POINT
+            if (playerThrow === ROCK) return ThrowResult.DRAW
             break
         case PAPER:
-            if (playerThrow === SCISSORS) return "Player point"
-            if (playerThrow === PAPER) return "Draw"
+            if (playerThrow === SCISSORS) return ThrowResult.PLAYER_POINT
+            if (playerThrow === PAPER) return ThrowResult.DRAW
             break
         case SCISSORS:
-            if (playerThrow === ROCK) return "Player point"
-            if (playerThrow === SCISSORS) return "Draw"
+            if (playerThrow === ROCK) return ThrowResult.PLAYER_POINT
+            if (playerThrow === SCISSORS) return ThrowResult.DRAW
     }
 
-    return "Opponent point"
+    return ThrowResult.OPPONENT_POINT
 }
 
 test.each([
@@ -27,7 +33,9 @@ test.each([
     [SCISSORS, ROCK],
     [PAPER, SCISSORS]
 ])("win", (opponentThrow: string, playerThrow: string) => {
-    expect(resolveThrow(opponentThrow, playerThrow)).toEqual("Player point")
+    expect(resolveThrow(opponentThrow, playerThrow)).toEqual(
+        ThrowResult.PLAYER_POINT,
+    )
 })
 
 test.each([
@@ -35,7 +43,9 @@ test.each([
     [PAPER, ROCK],
     [ROCK, SCISSORS],
 ])("lose", (opponentThrow: string, playerThrow: string) => {
-    expect(resolveThrow(opponentThrow, playerThrow)).toEqual("Opponent point")
+    expect(resolveThrow(opponentThrow, playerThrow)).toEqual(
+        ThrowResult.OPPONENT_POINT,
+    )
 })
 
 test.each([
@@ -43,7 +53,7 @@ test.each([
     [ROCK, ROCK],
     [SCISSORS, SCISSORS],
 ])("draw", (opponentThrow: string, playerThrow: string) => {
-    expect(resolveThrow(opponentThrow, playerThrow)).toEqual("Draw")
+    expect(resolveThrow(opponentThrow, playerThrow)).toEqual(ThrowResult.DRAW)
 })
 
 interface QualcosaInbound {
@@ -70,8 +80,8 @@ class RPS implements QualcosaInbound {
             const playerGamble = gamble[i]!
             const opponentGamble = this.challengeCatalog.getCurrentChallenge().opponentGamble[i]!
             const result = resolveThrow(opponentGamble, playerGamble)
-            playerPoints += result === "Player point" ? 1 : 0
-            opponentPoints += result === "Opponent point" ? 1 : 0
+            playerPoints += result === ThrowResult.PLAYER_POINT ? 1 : 0
+            opponentPoints += result === ThrowResult.OPPONENT_POINT ? 1 : 0
         }
         if (opponentPoints === playerPoints) return "draw!"
 
