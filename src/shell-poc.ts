@@ -1,9 +1,7 @@
 import { createInterface } from "node:readline/promises"
-import { stdin as input, stdout as output } from "node:process"
 import { Command } from "commander"
 
-
-async function runShell() {
+export async function runShell(input: NodeJS.ReadableStream, output: NodeJS.WritableStream) {
 
     const program = new Command()
         .name("rps-poc")
@@ -44,9 +42,4 @@ async function runShell() {
 
     rl.close()
 }
-
-runShell().catch((e) => {
-    console.error(e)
-    process.exit(1)
-})
 
