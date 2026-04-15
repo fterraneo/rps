@@ -1,13 +1,13 @@
 import { createInterface } from "node:readline/promises"
 import { Command } from "commander"
 
-export async function runShell(input: NodeJS.ReadableStream, output: NodeJS.WritableStream) {
+export async function runShell(input: NodeJS.ReadableStream, output: NodeJS.WritableStream, errors: NodeJS.WritableStream) {
 
     const program = new Command()
         .name("rps-poc")
         .exitOverride()
         .configureOutput({
-            writeErr: (str) => output.write(str),
+            writeErr: (str) => errors.write(str),
         })
 
     program
@@ -26,18 +26,20 @@ export async function runShell(input: NodeJS.ReadableStream, output: NodeJS.Writ
     const rl = createInterface({ input, output })
     let running = true
 
-    while (running) {
-        const line = (await rl.question("rps> ")).trim()
-        if (!line) continue
-
-        const args = line.split(/\s+/)
+    output.write("rps> ")
+    for await (const line of rl) {
+        const args = line.trim().split(/\s+/)
 
         try {
             await program.parseAsync(args, { from: "user" })
         } catch (err: unknown) {
             const msg = err instanceof Error ? err.message : "Unknown error"
-            output.write(`Error: ${msg}\n`)
+            errors.write(`${msg}\n`)
         }
+
+        if (!running) break
+
+        output.write("rps> ")
     }
 
     rl.close()
