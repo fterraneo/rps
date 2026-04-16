@@ -1,36 +1,6 @@
 import { expect, test } from "@jest/globals"
-import { PAPER, resolveThrow, ROCK, SCISSORS, ThrowResult } from "./throw"
-
-interface ChallengeCatalog {
-    getCurrentChallenge(): Challenge
-}
-
-class RockPaperScissorsGame {
-    private challengeCatalog: ChallengeCatalog
-
-    constructor(challengeCatalog: ChallengeCatalog) {
-        this.challengeCatalog = challengeCatalog
-    }
-
-    playGamble(gamble: string[]): string {
-        let playerPoints = 0
-        let opponentPoints = 0
-
-        for (let i = 0; i < 3; i++) {
-            const playerGamble = gamble[i]!
-            const opponentGamble = this.challengeCatalog.getCurrentChallenge().opponentGamble[i]!
-            const result = resolveThrow(opponentGamble, playerGamble)
-            playerPoints += result === ThrowResult.PLAYER_POINT ? 1 : 0
-            opponentPoints += result === ThrowResult.OPPONENT_POINT ? 1 : 0
-        }
-        if (opponentPoints === playerPoints) return "draw!"
-
-        return playerPoints >= 2 ? "player wins!" : "computer wins!"
-    }
-
-}
-
-type Challenge = { opponentGamble: string[]; opponent: string; player: string }
+import { PAPER, ROCK, SCISSORS } from "./throw"
+import { Challenge, ChallengeCatalog, RockPaperScissorsGame } from "./rps"
 
 class InMemoryChallengeCatalog implements ChallengeCatalog {
     private challenges: Challenge[]
