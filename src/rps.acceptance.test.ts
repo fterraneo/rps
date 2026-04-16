@@ -56,15 +56,11 @@ test.each([
     expect(resolveThrow(opponentThrow, playerThrow)).toEqual(ThrowResult.DRAW)
 })
 
-interface QualcosaInbound {
-    playGamble(gamble: string[]): string
-}
-
 interface ChallengeCatalog {
     getCurrentChallenge(): Challenge
 }
 
-class RPS implements QualcosaInbound {
+class RockPaperScissorsGame {
     private challengeCatalog: ChallengeCatalog
 
     constructor(challengeCatalog: ChallengeCatalog) {
@@ -113,7 +109,7 @@ test("single game, vs computer, player wins", () => {
     }
     const challengeCatalog = new InMemoryChallengeCatalog([currentChallenge])
 
-    const app = new RPS(challengeCatalog)
+    const app = new RockPaperScissorsGame(challengeCatalog)
     // submit gamble
     const results = app.playGamble([PAPER, PAPER, PAPER])
     // show results
@@ -129,7 +125,7 @@ test("single game, vs computer, computer wins", () => {
     }
     const challengeCatalog = new InMemoryChallengeCatalog([currentChallenge])
 
-    const app = new RPS(challengeCatalog)
+    const app = new RockPaperScissorsGame(challengeCatalog)
     // submit gamble
     const results = app.playGamble([SCISSORS, SCISSORS, SCISSORS])
     // show results
@@ -145,7 +141,7 @@ test("single game, vs computer, draw", () => {
     }
     const challengeCatalog = new InMemoryChallengeCatalog([currentChallenge])
 
-    const app = new RPS(challengeCatalog)
+    const app = new RockPaperScissorsGame(challengeCatalog)
     // submit gamble
     const results = app.playGamble([ROCK, PAPER, SCISSORS])
     // show results

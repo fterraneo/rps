@@ -44,4 +44,3 @@ export async function runShell(input: NodeJS.ReadableStream, output: NodeJS.Writ
 
     rl.close()
 }
-
