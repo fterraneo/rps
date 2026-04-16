@@ -1,5 +1,5 @@
 import { stdin, stdout, stderr } from "node:process"
-import { runShell } from "./shell"
+import { runShell } from "./infrastructure/shell"
 
 runShell(stdin, stdout, stderr).catch((e) => {
     console.error(e)

@@ -47,3 +47,4 @@ Gecko WINS with Scissors, Scissors, Paper!
 ### Commands available through `npm run`
 - `test`, `test:w`,
 - `typecheck` or `tc`, `typecheck:w` or `tc:w`
+- `demo`
