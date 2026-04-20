@@ -1,6 +1,9 @@
+import * as td from 'testdouble'
 import { expect, test } from "@jest/globals"
-import { runShell } from "./shell"
 import { Readable, Writable } from "node:stream"
+import { RPSEngine } from "../core/rps"
+import { RPSShell } from "./shell"
+
 
 class InMemoryWritable extends Writable {
     public chunks: Buffer[] = []
@@ -24,7 +27,10 @@ test("should handle sample commands", async () => {
     const output = new InMemoryWritable()
     const errors = new InMemoryWritable()
 
-    await runShell(Readable.from(["Hi\n", "quit\n"]), output, errors)
+    const fakeGame: RPSEngine = td.object<RPSEngine>()
+    const shell = new RPSShell(fakeGame)
+
+    await shell.run(Readable.from(["Hi\n", "quit\n"]), output, errors)
 
     expect(output.asText()).toContain("Hello!")
     expect(output.asText()).toContain("Bye!")

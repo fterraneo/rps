@@ -31,7 +31,8 @@
         "rimraf": "^4.4.0",
         "ts-jest": "^29.0.5",
         "tsx": "^3.12.6",
-        "typescript": "^5.0.2"
+        "typescript": "^5.0.2",
+        "testdouble": "^3.20.2"
     },
     "author": "Federico Terraneo",
     "license": "ISC",

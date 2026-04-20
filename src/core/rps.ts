@@ -6,7 +6,11 @@ export interface ChallengeCatalog {
     getCurrentChallenge(): Challenge
 }
 
-export class RockPaperScissorsGame {
+export interface RPSEngine {
+    playGamble(gamble: string[]): string
+}
+
+export class RockPaperScissorsGame implements RPSEngine{
     private challengeCatalog: ChallengeCatalog
 
     constructor(challengeCatalog: ChallengeCatalog) {
