@@ -1,7 +1,7 @@
 import { stderr, stdin, stdout } from "node:process"
 import { RPSShell } from "./infrastructure/shell"
 import { Challenge, ChallengeCatalog, RPSEngine, RockPaperScissorsGame } from "./core/rps"
-import { ROCK } from "./core/throw"
+import { Throw } from "./core/throw"
 
 class InMemoryChallengeCatalog implements ChallengeCatalog {
     private challenges: Challenge[]
@@ -19,7 +19,7 @@ const challengeCatalog: ChallengeCatalog = new InMemoryChallengeCatalog([
     {
         player: "me",
         opponent: "computer",
-        opponentGamble: [ROCK, ROCK, ROCK],
+        opponentGamble: [Throw.ROCK, Throw.ROCK, Throw.ROCK],
     },
 ])
 

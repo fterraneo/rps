@@ -1,13 +1,14 @@
-import { resolveThrow, ThrowResult } from "./throw"
+import { resolveThrow, Throw, ThrowResult } from "./throw"
 
-export type Challenge = { opponentGamble: string[]; opponent: string; player: string }
+type Gamble = Throw[]
+export type Challenge = { opponentGamble: Gamble; opponent: string; player: string }
 
 export interface ChallengeCatalog {
     getCurrentChallenge(): Challenge
 }
 
 export interface RPSEngine {
-    playGamble(gamble: string[]): string
+    playGamble(gamble: Gamble): string
 }
 
 export class RockPaperScissorsGame implements RPSEngine{
@@ -17,7 +18,7 @@ export class RockPaperScissorsGame implements RPSEngine{
         this.challengeCatalog = challengeCatalog
     }
 
-    playGamble(gamble: string[]): string {
+    playGamble(gamble: Gamble): string {
         let playerPoints = 0
         let opponentPoints = 0
 
