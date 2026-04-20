@@ -43,6 +43,8 @@ Gecko WINS with Scissors, Scissors, Paper!
 - Gamble: a set of three throws
 - Throw: can be Rock, Paper or Scissors (obviously)
 - Game: 2 players challenging each other with a gamble
+- Challenger: player that creates a game
+- Opponent: player that answers to a challenge
 
 ### Commands available through `npm run`
 - `test`, `test:w`,

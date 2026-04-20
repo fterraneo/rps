@@ -1,6 +1,6 @@
 # TODO
 
-* single game, vs computer: player submits gamble and the game is resolved
+* single game, respond to already present game: player submits gamble and the game is resolved
   - prepare challenge
   - submit gamble
   - show results

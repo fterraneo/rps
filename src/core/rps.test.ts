@@ -15,7 +15,7 @@ class InMemoryChallengeCatalog implements ChallengeCatalog {
 
 }
 
-test("single game, vs computer, player wins", () => {
+test("single game, vs challenger, opponent wins", () => {
     // prepare challenge
     const currentChallenge = {
         player: "me",
@@ -31,7 +31,7 @@ test("single game, vs computer, player wins", () => {
     expect(results).toEqual("player wins!")
 })
 
-test("single game, vs computer, computer wins", () => {
+test("single game, vs challenger, challenger wins", () => {
     // prepare challenge
     const currentChallenge = {
         player: "me",
@@ -47,7 +47,7 @@ test("single game, vs computer, computer wins", () => {
     expect(results).toEqual("computer wins!")
 })
 
-test("single game, vs computer, draw", () => {
+test("single game, vs challenger, draw", () => {
     // prepare challenge
     const currentChallenge = {
         player: "me",
